@@ -37,7 +37,7 @@
 //!HW de Express(dice eliminar todo y empezar de cero a hacer un servidor)
 const express = require("express");
 const server = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const router = require("../src/routes/index");
 const cors = require("cors");
 
