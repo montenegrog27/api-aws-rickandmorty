@@ -1,6 +1,9 @@
 require("dotenv").config();
+require("pg");
 const { Sequelize } = require("sequelize");
 const { DB_DEPLOY } = process.env;
+const FavoriteModel = require("./models/Favorite");
+const UserModel = require("./models/User");
 
 const sequelize = new Sequelize(DB_DEPLOY, {
   logging: false,
@@ -8,8 +11,6 @@ const sequelize = new Sequelize(DB_DEPLOY, {
 });
 
 //? importamos modelos
-const FavoriteModel = require("./models/Favorite");
-const UserModel = require("./models/User");
 
 // const sequelize = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${BDD}`,
