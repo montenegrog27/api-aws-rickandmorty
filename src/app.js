@@ -6,5 +6,5 @@ const router = require("./routes/index");
 server.use(express.json());
 server.use(cors());
 
-server.use("/rickandmorty", router);
+server.use("/", router);
 module.exports = server;
