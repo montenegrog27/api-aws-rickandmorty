@@ -1,22 +1,18 @@
-// const { User } = require("../DB_connections");
+const { User } = require("../DB_connections");
 
-// const postUser = async (req, res) => {
-//   const { email, password } = req.body;
-// const { User } = require("../DB_connections");
+const postUser = async (datos) => {
+  const { name, email, password } = datos;
+  //console.log(datos);
+  if (!name || !password || !email) {
+    return { message: "Datos Basicos incompletos" };
+  }
 
-// const postUser = async (req, res) => {
-//   const { email, password } = req.body;
-//   if (!email || !password) {
-//     return res.status(400).send("Faltan datos");
-//   }
-//   try {
-//     const user = await User.findOrCreate({
-//       where: { email, password },
-//     });
-//     return res.status(200).json(user);
-//   } catch (error) {
-//     return res.status(500).send(error.message);
-//   }
-// };
+  const newUser = await User.create({
+    name,
+    email,
+    password: "",
+  });
+  return newUser;
+};
 
-// module.exports = { postUser };
+module.exports = { postUser };

@@ -10,24 +10,19 @@ const sequelize = new Sequelize(DB_DEPLOY, {
   native: false,
 });
 
-//? importamos modelos
-
-// const sequelize = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${BDD}`,
-//   {
-//     logging: false,
-//   }
-// );
-
 FavoriteModel(sequelize);
 UserModel(sequelize);
 //
-const { User, Favorite } = sequelize.models;
-User.belongsToMany(Favorite, { through: "user_favorite" });
-Favorite.belongsToMany(User, { through: "user_favorite" });
+const { User, Favorite, UserFavorite } = sequelize.models;
+User.belongsToMany(Favorite, { through: "user_id" });
+UserFavorite.belongsToMany(User, {
+  through: Favorite,
+  foreignKey: "favorite_id",
+});
 
 module.exports = {
   User,
   Favorite,
+  UserFavorite,
   conn: sequelize,
 };
