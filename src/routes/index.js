@@ -1,8 +1,8 @@
-const login = require("../controllers/login");
+// const login = require("../controllers/login");
 const { deleteFav, postFav } = require("../controllers/handleFavorites");
 const getCharById = require("../controllers/getCharById");
 const { Router } = require("express");
-const { postUser } = require("../controllers/postUser");
+// const { postUser } = require("../controllers/postUser");
 const router = Router();
 
 //?Crear una ruta para cada controlador con los sgtes paths:
@@ -14,8 +14,8 @@ const router = Router();
 //? Aca le pasamos: 1_get, 2_ la ruta, 3_ el controlador
 
 router.get("/character/:id", getCharById);
-router.post("/login", postUser);
-router.get("/login", login);
+// router.post("/login", postUser);
+// router.get("/login", login);
 router.post("/fav", postFav);
 router.delete("/fav/:id", deleteFav);
 
