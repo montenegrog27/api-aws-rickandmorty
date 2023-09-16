@@ -13,16 +13,12 @@ const sequelize = new Sequelize(DB_DEPLOY, {
 FavoriteModel(sequelize);
 UserModel(sequelize);
 //
-const { User, Favorite, UserFavorite } = sequelize.models;
-User.belongsToMany(Favorite, { through: "user_id" });
-UserFavorite.belongsToMany(User, {
-  through: Favorite,
-  foreignKey: "favorite_id",
-});
+const { User, Favorite } = sequelize.models;
+User.belongsToMany(Favorite, { through: "user_favorite" });
+Favorite.belongsToMany(User, { through: "user_favorite" });
 
 module.exports = {
   User,
   Favorite,
-  UserFavorite,
   conn: sequelize,
 };
